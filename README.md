@@ -1,5 +1,5 @@
 # Subtitle-name-batch-changer
-change names of subtitles according to video names.
+change names of subtitles to video names.
 
 
 자막의 이름을 순서에 맞추어 비디오의 이름으로 일괄 변경합니다.

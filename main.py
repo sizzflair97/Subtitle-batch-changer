@@ -1,6 +1,6 @@
 import sys, re
 from os.path import join as p_join
-from os.path import dirname
+from os.path import dirname, basename
 from os import rename
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QFileDialog, QWidget, QMainWindow
@@ -155,11 +155,17 @@ class main_window(QMainWindow):
             vid_name = self.vl.takeItem(0).text()
             sub_name = self.sl.takeItem(0).text()
 
-            v_res = ext_pattern.search(vid_name)
-            s_res = ext_pattern.search(sub_name)
+            vid_base = basename(vid_name)
+            sub_base = basename(sub_name)
+
+            v_res = ext_pattern.search(vid_base)
+            s_res = ext_pattern.search(sub_base)
             sub_new_name = (
-                vid_name[:v_res.start()] +
-                sub_name[s_res.start():]
+                p_join(
+                    dirname(sub_name),
+                    vid_base[:v_res.start()] +
+                    sub_base[s_res.start():]
+                    )
                 )
             rename(sub_name, sub_new_name)
 
